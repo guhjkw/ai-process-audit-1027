@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Process Review · live demo</title>
+<meta name="description" content="Live demo for a Perth advisory and education business: every recurring process scored for where AI genuinely helps, where a feature you already pay for is enough, and where the process should be fixed or left human first. Hours back, A$ value, build effort, payback, Microsoft 365 Copilot seats and a 12-week plan. Invented business, real working logic.">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#070b12;--s1:#0d141f;--s2:#121b28;--s3:#192333;
+  --line:rgba(255,255,255,.07);--line2:rgba(255,255,255,.13);
+  --text:#eef3fa;--muted:#a9b6c8;--faint:#718099;
+  --acc:#818cf8;--acc2:#c7d2fe;--accInk:#0f1240;--accSoft:rgba(129,140,248,.13);--accLine:rgba(129,140,248,.45);
+  --gold:#e7b84a;--goldSoft:rgba(231,184,74,.12);
+  --r:20px;--r2:14px;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --a-bg:#f4f6f9;--a-panel:#fff;--a-line:#e2e6ed;--a-line2:#cfd6e1;--a-text:#14213d;--a-muted:#5b6578;--a-side:#14213d;--a-sideText:#c5cfe0;
+  --a-acc:#4f46e5;--a-accSoft:#eef0ff;--maroon:#8c1d40;--maroonSoft:#fbe9ef;
+  --c-ok:#047857;--c-okBg:#e2f5ec;--c-warn:#9a6700;--c-warnBg:#fdf3d6;--c-bad:#b42318;--c-badBg:#fde8e6;--c-info:#1d4ed8;--c-infoBg:#e7eefc;--c-grey:#4b5563;--c-greyBg:#eef0f3;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1360px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--acc2);outline-offset:2px;border-radius:6px}
+section[id]{scroll-margin-top:76px}
+.ribbon{background:linear-gradient(90deg,#15183d,#070b12 35%,#070b12 65%,#15183d);border-bottom:1px solid var(--line);font-size:13px;color:var(--muted)}
+.ribbon .wrap{display:flex;gap:10px;align-items:center;justify-content:center;padding-top:9px;padding-bottom:9px;flex-wrap:wrap;text-align:center}
+.ribbon b{color:var(--text)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px var(--accSoft);display:inline-block}
+header.nav{position:sticky;top:0;z-index:40;background:rgba(7,11,18,.86);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(140deg,#c7d2fe,#6366f1 60%,#312e81);display:grid;place-items:center;color:#06142b;font:800 15px var(--serif)}
+.wm{font-weight:760;letter-spacing:-.015em;font-size:17px;line-height:1}
+.wm small{display:block;font-size:10px;letter-spacing:.22em;color:var(--faint);font-weight:650;margin-top:5px}
+.links{display:flex;gap:22px;font-size:14.5px;color:var(--muted)}
+.links a{text-decoration:none}.links a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:10px 16px;font-weight:700;font-size:14.5px;border:1px solid var(--line2);background:var(--s2);text-decoration:none;white-space:nowrap}
+.btn.pri{background:linear-gradient(180deg,var(--acc2),var(--acc));color:var(--accInk);border-color:transparent}
+.btn.sm{padding:7px 11px;font-size:13px;border-radius:10px}
+.hero{position:relative;padding:38px 0 8px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-30% -10% auto -10%;height:700px;background:radial-gradient(600px 340px at 12% 20%,rgba(129,140,248,.14),transparent 70%),radial-gradient(520px 320px at 92% 0%,rgba(231,184,74,.07),transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:end}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--accSoft);color:var(--acc2);font-size:13px;font-weight:650;border:1px solid var(--accLine)}
+h1{font:600 clamp(30px,4vw,50px)/1.07 var(--serif);letter-spacing:-.02em;margin:14px 0 12px}
+h1 .hl{background:linear-gradient(100deg,var(--acc2),var(--acc) 55%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:17px;color:var(--muted);max-width:690px;margin:0}
+.lede b{color:var(--text);font-weight:650}
+.benefits{display:grid;gap:10px}
+.ben{display:flex;gap:13px;align-items:flex-start;padding:13px 15px;border-radius:var(--r2);background:var(--s1);border:1px solid var(--line)}
+.ben i{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--accSoft);color:var(--acc);font-style:normal;font-size:15px;font-weight:800}
+.ben b{display:block;font-size:15px}
+.ben span{color:var(--muted);font-size:13.5px;line-height:1.45}
+.trybreak{margin:18px 0 0;font-size:14px;color:var(--muted)}
+.trybreak b{color:var(--acc2)}
+
+/* ---------- the app window (light, a faculty studio) ---------- */
+.app{margin:18px 0 0;border-radius:18px;overflow:hidden;border:1px solid var(--line2);box-shadow:0 50px 110px -50px rgba(0,0,0,.95),0 0 0 6px #0b1220;background:var(--a-bg);color:var(--a-text);color-scheme:light}
+.abar{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#e9edf3;border-bottom:1px solid var(--a-line2);flex-wrap:wrap}
+.lights{display:flex;gap:6px}.lights i{width:11px;height:11px;border-radius:50%;background:#c9d0db}
+.atitle{font-weight:750;font-size:13.5px;color:#22304d}
+.atitle small{color:#7a8496;font-weight:600;margin-left:6px}
+.abar .sp{flex:1}
+.abtn{border:1px solid var(--a-line2);background:#fff;color:var(--a-text);border-radius:9px;padding:6px 11px;font-size:13px;font-weight:650;line-height:1.3}
+.abtn:hover{border-color:#aab4c4}
+.abtn.pri{background:var(--a-acc);border-color:var(--a-acc);color:#fff}
+.abtn.ok{background:var(--c-ok);border-color:var(--c-ok);color:#fff}
+.abtn.ghost{background:transparent}
+.abtn[disabled]{opacity:.45;cursor:not-allowed}
+.abody{display:grid;grid-template-columns:210px minmax(0,1fr)}
+.side{background:var(--a-side);color:var(--a-sideText);padding:14px 10px;display:flex;flex-direction:column;gap:3px}
+.side .co{color:#fff;font-weight:700;font-size:13.5px;padding:4px 8px 12px;line-height:1.3;font-family:var(--serif)}
+.side .co small{display:block;color:#8e9ab0;font-weight:550;font-size:11.5px;margin-top:3px;font-family:var(--sans)}
+.side button{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;border-radius:8px;font-size:13.5px;font-weight:600}
+.side button:hover{background:rgba(255,255,255,.06);color:#fff}
+.side button[aria-selected="true"]{background:rgba(255,255,255,.11);color:#fff}
+.side button:focus-visible{outline:2px solid #b0d0ff}
+.side .cnt{font:650 11.5px var(--mono);background:rgba(255,255,255,.1);padding:1px 7px;border-radius:999px}
+.side .cnt.bad{background:#7f1d1d;color:#fecaca}
+.side .cnt.ok{background:#064e3b;color:#a7f3d0}
+.side .sep{height:1px;background:rgba(255,255,255,.08);margin:10px 4px}
+.side .note{font-size:11.5px;color:#8e9ab0;padding:4px 8px;line-height:1.45}
+.main{min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));background:#fff;border-bottom:1px solid var(--a-line)}
+.kpi{padding:11px 14px;border-right:1px solid var(--a-line)}
+.kpi:last-child{border-right:0}
+.kpi b{display:block;font:760 21px/1.15 var(--mono);letter-spacing:-.02em}
+.kpi span{display:block;font-size:11.5px;color:var(--a-muted);font-weight:600;margin-top:2px;line-height:1.3}
+.kpi.flash b{animation:flash 1s ease}
+@keyframes flash{0%{color:var(--a-acc)}100%{color:inherit}}
+.cols{display:grid;grid-template-columns:340px minmax(0,1fr);min-height:600px}
+.left{border-right:1px solid var(--a-line);background:#fafbfc;padding:14px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.right{padding:14px 16px;min-width:0}
+.card{background:#fff;border:1px solid var(--a-line);border-radius:12px;padding:12px}
+.card h3{margin:0 0 8px;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:#5b6578}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.field{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--a-muted);font-weight:600}
+.field input,.field select,.field textarea,.ta{border:1px solid var(--a-line2);border-radius:8px;padding:6px 8px;background:#fff;color:var(--a-text);font-size:13.5px;min-width:0;width:100%}
+.ta{font:13px/1.5 var(--sans);resize:vertical}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.check{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--a-text);font-weight:600}
+.err{color:var(--c-bad);font-size:12.5px;font-weight:600;margin-top:6px}
+.err:empty{display:none}
+.hint{color:var(--a-muted);font-size:12px;margin-top:6px;line-height:1.45}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap;line-height:1.5}
+.chip.ok{background:var(--c-okBg);color:var(--c-ok)}
+.chip.warn{background:var(--c-warnBg);color:var(--c-warn)}
+.chip.bad{background:var(--c-badBg);color:var(--c-bad)}
+.chip.info{background:var(--c-infoBg);color:var(--c-info)}
+.chip.grey{background:var(--c-greyBg);color:var(--c-grey)}
+.chip.mar{background:var(--maroonSoft);color:var(--maroon)}
+.chip button{all:unset;cursor:pointer;font-weight:800;padding:0 2px}
+/* ---------- page sections ---------- */
+.sec{padding:64px 0 0}
+.sec h2.big{font:600 clamp(26px,3vw,38px)/1.12 var(--serif);letter-spacing:-.015em;margin:0 0 10px}
+.sec p.sub{color:var(--muted);max-width:780px;margin:0 0 26px;font-size:16.5px}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.step{padding:18px;border-radius:var(--r2);background:var(--s1);border:1px solid var(--line)}
+.step .n{font:800 13px var(--mono);color:var(--acc)}
+.step b{display:block;margin:6px 0 4px;font-size:16px}
+.step span{color:var(--muted);font-size:14px}
+.step.you{border-color:var(--accLine);background:linear-gradient(180deg,rgba(129,140,248,.08),var(--s1))}
+.arch{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:stretch}
+.box{padding:14px;border-radius:var(--r2);background:var(--s1);border:1px solid var(--line);font-size:13.5px;color:var(--muted);position:relative}
+.box b{display:block;color:var(--text);font-size:14.5px;margin-bottom:4px}
+.box .tier{display:inline-block;margin-top:8px;font:700 11px var(--mono);padding:2px 7px;border-radius:999px;background:var(--accSoft);color:var(--acc2)}
+.box.you{border-color:var(--accLine)}
+.why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.why div{padding:14px;border-radius:var(--r2);border:1px solid var(--line);background:var(--s1);font-size:14px;color:var(--muted)}
+.why b{color:var(--text);display:block;margin-bottom:3px}
+.hood{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+pre.tree{margin:0;padding:16px;border-radius:var(--r2);background:var(--s1);border:1px solid var(--line);font:13px/1.6 var(--mono);color:#cbd8ea;overflow:auto}
+.hood p{color:var(--muted);margin:0 0 12px}
+.tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
+.tierc{position:relative;display:flex;flex-direction:column;padding:22px;border-radius:var(--r);background:var(--s1);border:1px solid var(--line2)}
+.tierc.feat{border:1px solid rgba(231,184,74,.6);background:linear-gradient(180deg,rgba(231,184,74,.09),var(--s1) 40%);box-shadow:0 30px 80px -40px rgba(231,184,74,.35)}
+.badge{position:absolute;top:-12px;left:22px;background:var(--gold);color:#2a1d00;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;letter-spacing:.02em}
+.tierc h3{margin:0;font-size:18px}
+.price{font:800 34px/1.1 var(--mono);letter-spacing:-.03em;margin:10px 0 2px}
+.price s{font-size:16px;color:var(--faint);font-weight:600;margin-left:8px}
+.tierc .for{color:var(--muted);font-size:14px;margin:0 0 12px}
+.tierc ul{margin:0 0 14px;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px;font-size:14px}
+.tierc li{display:flex;gap:8px}
+.tierc li:before{content:"✓";color:var(--acc);font-weight:900}
+.tierc.feat li:before{color:var(--gold)}
+.tierc li.bonus:before{content:"+";color:var(--gold)}
+.ms{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+.ms b{color:var(--text)}
+.phases{margin-top:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.phases div{padding:14px;border-radius:var(--r2);border:1px solid var(--line);background:var(--s1);font-size:13.5px;color:var(--muted)}
+.phases b{display:block;color:var(--text)}
+.phases .p{display:block;font:800 18px var(--mono);color:var(--text);margin:4px 0}
+.cta{margin:56px 0 0;padding:30px;border-radius:24px;border:1px solid var(--accLine);background:radial-gradient(500px 220px at 15% 0%,rgba(129,140,248,.15),transparent 70%),var(--s1);display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:26px;align-items:center}
+.cta h2{margin:0 0 8px;font:600 clamp(24px,2.6vw,32px)/1.15 var(--serif)}
+.cta p{margin:0;color:var(--muted)}
+.cta .urg{margin-top:10px;font-size:14px;color:var(--acc2)}
+.need{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.need li{padding:10px 12px;border-radius:12px;background:var(--s2);border:1px solid var(--line);font-size:14px}
+.need li b{color:var(--acc2);font-family:var(--mono);margin-right:6px}
+.scope{margin:56px 0 0;padding:22px;border-radius:var(--r2);border:1px solid var(--line);background:var(--s1);color:var(--muted);font-size:14px}
+.scope h3{margin:0 0 8px;color:var(--text);font-size:15px}
+.scope ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+footer{padding:36px 0 50px;color:var(--faint);font-size:13.5px;text-align:center}
+@media (max-width:1180px){
+  .hero .wrap{grid-template-columns:1fr}
+  .kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .kpi:nth-child(3){border-right:0}
+  .kpi:nth-child(-n+3){border-bottom:1px solid var(--a-line)}
+  .cols{grid-template-columns:1fr}
+  .left{border-right:0;border-bottom:1px solid var(--a-line)}
+  .steps,.arch,.phases{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tiers,.why{grid-template-columns:1fr}
+  .cta,.hood{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .wrap{padding:0 16px}
+  .links{display:none}
+  .abody{grid-template-columns:1fr}
+  .side{flex-direction:row;flex-wrap:wrap;gap:4px;padding:8px}
+  .side .co,.side .sep,.side .note{display:none}
+  .side button{padding:6px 9px;font-size:12.5px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi{border-right:1px solid var(--a-line)!important;border-bottom:1px solid var(--a-line)}
+  .kpi:nth-child(2n){border-right:0!important}
+  .slides,.case,.export{grid-template-columns:1fr}
+  .steps,.arch,.phases{grid-template-columns:1fr}
+  .abar .atitle small{display:none}
+  .nav .wrap{height:56px}
+  .wm{font-size:15px}
+  .wm small{display:none}
+  .nav .btn.sm{padding:6px 10px;font-size:12.5px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- process review ---------- */
+.plist{display:flex;flex-direction:column;gap:6px;max-height:520px;overflow:auto}
+.pr{border:1px solid var(--a-line);border-radius:10px;padding:8px 9px;background:#fff;font-size:12.5px}
+.pr .top{display:flex;gap:6px;align-items:center}
+.pr .top b{flex:1;min-width:0;font-size:12.8px;line-height:1.3}
+.pr .top .id{font:700 11px var(--mono);color:var(--a-acc)}
+.pr .top button{all:unset;cursor:pointer;color:#9aa3b2;font-weight:800;padding:0 4px}
+.pr .top button:hover{color:var(--c-bad)}
+.pr .g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-top:6px}
+.pr label{display:flex;flex-direction:column;gap:2px;font-size:10.5px;color:var(--a-muted);font-weight:650}
+.pr input,.pr select{border:1px solid var(--a-line2);border-radius:6px;padding:3px 5px;font-size:12px;min-width:0;width:100%;background:#fff}
+.addp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.addp .full{grid-column:1/-1}
+.addp input,.addp select{border:1px solid var(--a-line2);border-radius:7px;padding:5px 6px;font-size:12.5px;min-width:0;width:100%;background:#fff}
+.tabsx{display:flex;gap:4px;border-bottom:1px solid var(--a-line2);margin:-2px 0 12px;flex-wrap:wrap}
+.tabsx button{border:0;background:transparent;padding:8px 10px;font-size:13px;font-weight:700;color:var(--a-muted);border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabsx button[aria-selected="true"]{color:var(--a-text);border-bottom-color:var(--a-acc)}
+.opp{border:1px solid var(--a-line);border-radius:12px;background:#fff;padding:11px 13px;display:grid;grid-template-columns:34px minmax(0,1fr) 300px;gap:12px;align-items:start;margin-bottom:8px}
+.opp .rk{font:800 18px var(--mono);color:var(--a-acc)}
+.opp h4{margin:0 0 4px;font-size:14.5px}
+.opp .reason{font-size:12.8px;color:#475066;line-height:1.45;margin-top:4px}
+.opp .ctl{font-size:12px;color:#6b7383;margin-top:4px}
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.nums div{background:#f7f8fb;border-radius:8px;padding:6px 7px}
+.nums b{display:block;font:750 14px var(--mono)}
+.nums span{font-size:10.5px;color:var(--a-muted);font-weight:650}
+.gantt{display:flex;flex-direction:column;gap:6px}
+.gh{display:grid;grid-template-columns:230px repeat(12,minmax(0,1fr));gap:2px;font:650 10.5px var(--mono);color:#7b8394}
+.gr{display:grid;grid-template-columns:230px repeat(12,minmax(0,1fr));gap:2px;align-items:center}
+.gr .n{font-size:12.5px;font-weight:650;line-height:1.25;padding-right:6px}
+.gr .n small{display:block;color:#7b8394;font-weight:600}
+.bar{height:22px;border-radius:6px;background:#c7d2fe}
+.bar.p1{background:#a7f3d0}.bar.p2{background:#c7d2fe}.bar.p3{background:#fecaca}
+.cell{height:22px;border-radius:4px;background:#f3f4f8}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:#5b6578;margin-top:8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
+.chal{border:1px solid var(--a-line);border-radius:12px;background:#fff;padding:12px 14px;margin-bottom:10px}
+.chal h4{margin:0 0 8px;font-size:15px}
+.chal dl{display:grid;grid-template-columns:110px minmax(0,1fr);gap:5px 10px;margin:0;font-size:13px}
+.chal dt{font-weight:750;color:#5b6578}
+.chal dd{margin:0}
+.cop{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:10px}
+.cop div{border:1px solid var(--a-line);border-radius:10px;padding:9px 11px;background:#fff}
+.cop b{display:block;font:750 19px var(--mono)}
+.cop span{font-size:11.5px;color:var(--a-muted);font-weight:650}
+@media (max-width:1180px){.opp{grid-template-columns:34px minmax(0,1fr)}.opp .nums{grid-column:1/-1}}
+@media (max-width:760px){.pr .g{grid-template-columns:repeat(2,minmax(0,1fr))}.gh,.gr{grid-template-columns:110px repeat(12,minmax(0,1fr))}.gr .n small{display:none}.cop{grid-template-columns:1fr}.chal dl{grid-template-columns:1fr}.nums{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div class="ribbon"><div class="wrap"><span class="dot"></span><span><b>Live tool with an invented Perth business.</b> Built from your job post: review the processes, find where AI genuinely helps, and implement it in a way that reduces manual effort.</span></div></div>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="#top"><span class="logo">AI</span><span class="wm">AI Process Review<small>REVIEW · RECOMMEND · IMPLEMENT</small></span></a>
+  <nav class="links"><a href="#tool">Try it</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#start">Start</a></nav>
+  <a class="btn pri sm" href="#start">Review my processes</a>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="eyebrow">For a business that advises and teaches SMEs</span>
+    <h1>Find the work AI should take off your plate, <span class="hl">and the work it should not touch.</span></h1>
+    <p class="lede">This is a <b>live tool, not a video</b>. Each recurring process is scored on what it costs you now, how well AI fits, how risky it is and what it would take to build. It says <b>when a feature you already pay for is enough</b>, when <b>the process should be fixed first</b>, and when the work should stay human, then schedules the rest into a 12-week plan.</p>
+  </div>
+  <div class="benefits">
+    <div class="ben"><i>1</i><div><b>Hours back, in dollars</b><span>Hours saved each week, what they are worth at your staff cost, net of any Copilot licences.</span></div></div>
+    <div class="ben"><i>2</i><div><b>Honest about where AI does not fit</b><span>Broken processes get fixed before they are automated. Judgement work stays with your people.</span></div></div>
+    <div class="ben"><i>3</i><div><b>A plan you can start Monday</b><span>Quick wins first, risky work last and piloted with approval, scheduled against real capacity.</span></div></div>
+  </div>
+</div></section>
+
+<section id="tool"><div class="wrap">
+  <p class="trybreak">Try to break it: <b>drop course enrolment rework to 0.5 hours</b> and watch "fix first" turn into an automation, <b>raise the Copilot seat price</b>, <b>set proposal judgement to 3</b>, or <b>add a process with no name</b>.</p>
+  <div class="app" id="app">
+    <div class="abar">
+      <div class="lights"><i></i><i></i><i></i></div>
+      <div class="atitle">AI Process Review <small>Swanbourne SME Advisory (invented) · Perth WA</small></div>
+      <div class="sp"></div>
+      <button class="abtn" id="csvBtn" type="button">Download plan (CSV)</button>
+      <button class="abtn" id="resetBtn" type="button">Reset</button>
+    </div>
+    <div class="abody">
+      <nav class="side" role="tablist" aria-label="Views">
+        <div class="co">Process review<small>9 processes · invented</small></div>
+        <button role="tab" type="button" data-tab="ranked" aria-selected="true">Ranked opportunities <span class="cnt" id="cntRank">0</span></button>
+        <button role="tab" type="button" data-tab="plan" aria-selected="false">12-week plan <span class="cnt" id="cntPlan">0</span></button>
+        <button role="tab" type="button" data-tab="push" aria-selected="false">Where I'd push back <span class="cnt bad" id="cntPush">0</span></button>
+        <button role="tab" type="button" data-tab="copilot" aria-selected="false">Copilot <span class="cnt" id="cntCop">0</span></button>
+        <div class="sep"></div>
+        <div class="note">Every figure is computed from the inputs on the left. Savings shares and build hours are planning assumptions, checked against your real numbers during the review.</div>
+      </nav>
+      <div class="main">
+        <div class="kpis" id="kpis">
+          <div class="kpi" data-k="now"><b>–</b><span>Hours a week on these processes</span></div>
+          <div class="kpi" data-k="saved"><b>–</b><span>Hours a week back</span></div>
+          <div class="kpi" data-k="net"><b>–</b><span>A$ a month, net of licences</span></div>
+          <div class="kpi" data-k="build"><b>–</b><span>Build hours</span></div>
+          <div class="kpi" data-k="payback"><b>–</b><span>Weeks to pay back</span></div>
+          <div class="kpi" data-k="seats"><b>–</b><span>Copilot seats</span></div>
+        </div>
+        <div class="cols">
+          <aside class="left">
+            <div class="card">
+              <h3>Your numbers</h3>
+              <div class="grid2">
+                <label class="field">Staff cost (A$/hour)<input type="number" id="sCost" min="10" max="500" step="1"></label>
+                <label class="field">Copilot (A$/seat/month)<input type="number" id="sCop" min="0" max="200" step="0.1"></label>
+                <label class="field">Build capacity (h/week)<input type="number" id="sCap" min="1" max="40" step="1"></label>
+                <label class="field">"Fix first" at rework (%)<input type="number" id="sFix" min="5" max="80" step="5"></label>
+              </div>
+              <div class="hint">Copilot default from a third-party Australian price guide (Sep 2026), unverified. Enter your own Microsoft quote.</div>
+              <div class="err" id="setErr" role="alert"></div>
+            </div>
+            <div class="card">
+              <h3>Processes</h3>
+              <div class="plist" id="plist"></div>
+            </div>
+            <div class="card">
+              <h3>Add a process</h3>
+              <form class="addp" id="addForm" novalidate>
+                <input class="full" id="aName" placeholder="Process, e.g. Weekly SME newsletter" aria-label="Process name">
+                <input id="aOwner" placeholder="Owner, e.g. Marketing" aria-label="Owner">
+                <input id="aHours" type="number" min="0" step="0.5" placeholder="Hours a week" aria-label="Hours a week">
+                <input id="aSteps" type="number" min="1" step="1" placeholder="Steps" aria-label="Steps">
+                <select id="aSens" aria-label="Data"><option value="public">Public data</option><option value="client">Client data</option><option value="financial">Financial data</option></select>
+                <label class="check"><input type="checkbox" id="aText" checked> Mostly writing</label>
+                <label class="check"><input type="checkbox" id="aClient"> Client sees it</label>
+                <label class="check"><input type="checkbox" id="aM365" checked> In Microsoft 365</label>
+                <select id="aStruct" aria-label="Structure"><option value="0">Unstructured</option><option value="1" selected>Some structure</option><option value="2">Structured</option><option value="3">Fully structured</option></select>
+                <button class="abtn pri full" type="submit" id="aAdd">Add and re-rank</button>
+              </form>
+              <div class="err" id="addErr" role="alert"></div>
+            </div>
+          </aside>
+          <div class="right">
+            <div data-pane="ranked"><div class="tabh"><h2>Ranked by hours back per build hour, adjusted for risk</h2><p id="rankSum"></p></div><div id="opps"></div></div>
+            <div data-pane="plan" hidden><div class="tabh"><h2>12-week plan</h2><p id="planSum"></p></div><div class="gantt" id="gantt"></div>
+              <div class="legend"><span><i style="background:#a7f3d0"></i>Quick wins and fixes</span><span><i style="background:#c7d2fe"></i>Automations and drafting</span><span><i style="background:#fecaca"></i>Higher risk, piloted with approval</span></div>
+              <div class="hint" id="notAuto"></div></div>
+            <div data-pane="push" hidden><div class="tabh"><h2>Where I would push back, and how</h2><p>A question, the evidence, a small trial, how we measure it, and the way back.</p></div><div id="chal"></div></div>
+            <div data-pane="copilot" hidden><div class="tabh"><h2>Microsoft 365 Copilot, where it fits</h2></div><div class="cop" id="copBox"></div><div id="copList"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="how"><div class="wrap">
+  <h2 class="big">How it works</h2>
+  <p class="sub">The review is quick and specific. The implementation starts with whatever pays back first.</p>
+  <div class="steps">
+    <div class="step you"><span class="n">01 · you</span><b>Walk me through the week</b><span>30 minutes per role: what repeats, how long it takes, where it goes wrong. Screens shared, nothing installed.</span></div>
+    <div class="step"><span class="n">02</span><b>Map and measure</b><span>Each process scored like this: time, errors, rework, data sensitivity, judgement, tools.</span></div>
+    <div class="step"><span class="n">03</span><b>Recommend, with the case</b><span>Copilot, an automation, a built-in feature, a process fix, or "keep it human", each with its reason and its risk control.</span></div>
+    <div class="step"><span class="n">04</span><b>Implement and prove it</b><span>Quick wins in week one, then the rest on the plan. Hours saved are measured after 30 days, not assumed.</span></div>
+  </div>
+</div></section>
+
+<section class="sec" id="hood"><div class="wrap">
+  <h2 class="big">Under the hood</h2>
+  <div class="hood">
+    <pre class="tree">ai-process-audit-1027/
+├─ index.html            the review you just used
+├─ src/processAudit.js   approach, risk, savings, plan
+├─ data/processes.json   the invented Perth business
+└─ tests/
+   ├─ verify.js          <span id="nodeCount">45</span> engine checks
+   └─ browser-check.py   clicks through this page</pre>
+    <div>
+      <p>The page and the tests load the same engine file. The rules are plain and in order: a feature you already have, then a broken process, then judgement work, then automation, Copilot, or an AI draft with approval.</p>
+      <p>Hand <span class="mono">src/</span> and <span class="mono">tests/</span> to your developer, or never open them.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="pricing"><div class="wrap">
+  <h2 class="big">Hourly, in blocks you can stop after</h2>
+  <p class="sub">US$65 an hour on Upwork. Each block ends with something you keep.</p>
+  <div class="tiers">
+    <div class="tierc">
+      <h3>Process review</h3>
+      <div class="price">$780</div>
+      <p class="for">About 12 hours. The review and the plan.</p>
+      <ul>
+        <li>Walkthroughs with each role</li>
+        <li>Every recurring process mapped and measured</li>
+        <li>This review on your real processes</li>
+        <li>Copilot fit and licence count</li>
+        <li>12-week plan</li>
+      </ul>
+      <div class="ms"><span><b>Done when:</b> you have the ranked review and the plan, and agree with the top three.</span></div>
+    </div>
+    <div class="tierc feat">
+      <span class="badge">BEST VALUE</span>
+      <h3>Review + first implementations</h3>
+      <div class="price">$2,600<s>worth $5,200+</s></div>
+      <p class="for">About 40 hours. The review, then the quick wins live.</p>
+      <ul>
+        <li>Everything in the process review</li>
+        <li>Top 3 quick wins built and running</li>
+        <li>Copilot set up with prompts for your documents, if it fits</li>
+        <li>Staff guide for each change</li>
+        <li>Hours saved measured after 30 days</li>
+        <li class="bonus">Short training video per change</li>
+        <li class="bonus">Your process list loaded in for you</li>
+        <li class="bonus">30 days of fixes after go-live</li>
+      </ul>
+      <div class="ms">
+        <span><b>Weeks 1 to 2:</b> review and plan agreed.</span>
+        <span><b>Weeks 3 to 5:</b> quick wins live, staff trained.</span>
+        <span><b>Week 9:</b> measured hours saved against the review.</span>
+      </div>
+    </div>
+    <div class="tierc">
+      <h3>Part-time AI partner</h3>
+      <div class="price">$1,300<small style="font-size:14px;color:var(--faint)">/month</small></div>
+      <p class="for">About 20 hours a month, ongoing, after the first block.</p>
+      <ul>
+        <li>The rest of the 12-week plan, in order</li>
+        <li>Monthly check of hours saved and costs</li>
+        <li>New processes reviewed as the business changes</li>
+        <li>Pause or stop at any month end</li>
+      </ul>
+      <div class="ms"><span><b>Billed weekly</b> on Upwork against logged hours.</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="start"><div class="wrap">
+  <div class="cta">
+    <div>
+      <h2>Send me your five most time-consuming tasks. See your own review before we talk.</h2>
+      <p>One line each with rough hours a week is enough. I will load them into this review so you see the ranking, the plan and where I would push back, on your business.</p>
+      <p class="urg">I can start the review this week, and I work across Perth business hours.</p>
+    </div>
+    <ul class="need">
+      <li><b>01</b>Your recurring tasks, with rough hours and who does them</li>
+      <li><b>02</b>The tools you use (Microsoft 365, HubSpot, Xero, your course platform)</li>
+      <li><b>03</b>Where things go wrong or get redone today</li>
+      <li><b>04</b>A 30-minute walkthrough with each role</li>
+    </ul>
+  </div>
+  <div class="scope">
+    <h3>Honest scope</h3>
+    <ul>
+      <li>Built from your job post. The business, processes and numbers are invented; the process names echo the kind of work your posts describe. No real client data is shown.</li>
+      <li>Savings shares, build hours and the Copilot price are planning assumptions shown on the page; the review replaces them with your measured numbers.</li>
+      <li>The engine and the passing tests are real: <span id="countLine">45 engine checks and 23 browser checks</span>.</li>
+      <li>The delivered work runs in your own Microsoft 365, HubSpot and Xero accounts, with access you grant. No prior client build of this kind is claimed.</li>
+      <li>This link will be taken down about 30 days after it was sent.</li>
+    </ul>
+  </div>
+</div></section>
+</main>
+<footer>Built by Taiwo, Pathfinder Automation Solutions</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="src/processAudit.js"></script>
+<script>
+(function () {
+  'use strict';
+  var FALLBACK = {"_note":"Invented sample business for a live demo: a Perth advisory and education firm for small and medium businesses. Every process, number and tool mix is invented.","business":"Swanbourne SME Advisory (invented), Perth WA","settings":{"staffCost":62,"copilotPerSeat":31.4,"weeksPerMonth":4.33},"processes":[{"id":"P1","name":"Podcast episode to transcript to blog post","owner":"Marketing coordinator","hoursPerWeek":6,"frequency":"weekly","steps":6,"tools":["Podcast host","Word","HubSpot CMS"],"sensitivity":"public","judgement":1,"structured":1,"textHeavy":true,"clientFacing":true,"m365":true,"errorRate":3,"reworkHours":0.5},{"id":"P2","name":"Training video edits and captions","owner":"Course producer","hoursPerWeek":4,"frequency":"weekly","steps":7,"tools":["Video editor","LMS"],"sensitivity":"public","judgement":2,"structured":1,"textHeavy":false,"clientFacing":true,"m365":false,"errorRate":2,"reworkHours":0.5},{"id":"P3","name":"Client bookkeeping data entry","owner":"Accountant","hoursPerWeek":10,"frequency":"daily","steps":6,"tools":["Xero","Excel","Outlook"],"sensitivity":"financial","judgement":1,"structured":3,"textHeavy":false,"clientFacing":false,"m365":true,"errorRate":6,"reworkHours":1.5},{"id":"P4","name":"Website enquiries into HubSpot and first reply","owner":"Office manager","hoursPerWeek":5,"frequency":"daily","steps":5,"tools":["HubSpot","Outlook"],"sensitivity":"client","judgement":1,"structured":2,"textHeavy":true,"clientFacing":true,"m365":true,"errorRate":4,"reworkHours":0.5},{"id":"P5","name":"Proposals and engagement letters","owner":"Director","hoursPerWeek":3,"frequency":"weekly","steps":5,"tools":["Word","Outlook"],"sensitivity":"client","judgement":2,"structured":1,"textHeavy":true,"clientFacing":true,"m365":true,"errorRate":2,"reworkHours":0.5},{"id":"P6","name":"Client call notes and action items","owner":"Advisers","hoursPerWeek":4,"frequency":"daily","steps":3,"tools":["Teams","Word"],"sensitivity":"client","judgement":1,"structured":1,"textHeavy":true,"clientFacing":false,"m365":true,"errorRate":5,"reworkHours":0.5},{"id":"P7","name":"Course enrolment admin","owner":"Office manager","hoursPerWeek":5,"frequency":"daily","steps":11,"tools":["Forms","Excel","LMS","Outlook","Xero"],"sensitivity":"client","judgement":0,"structured":2,"textHeavy":false,"clientFacing":true,"m365":true,"errorRate":12,"reworkHours":2},{"id":"P8","name":"Strategy advice sessions","owner":"Director","hoursPerWeek":8,"frequency":"weekly","steps":4,"tools":["Teams"],"sensitivity":"client","judgement":3,"structured":0,"textHeavy":false,"clientFacing":true,"m365":true,"errorRate":1,"reworkHours":0},{"id":"P9","name":"Overdue invoice reminders","owner":"Accountant","hoursPerWeek":2,"frequency":"weekly","steps":4,"tools":["Xero","Outlook"],"sensitivity":"financial","judgement":0,"structured":3,"textHeavy":false,"clientFacing":true,"m365":true,"errorRate":3,"reworkHours":0.25,"builtIn":"Xero invoice reminders"}]};
+  var A = window.ProcessAudit;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var clone = function (x) { return JSON.parse(JSON.stringify(x)); };
+  var money = function (v) { return 'A$' + Math.round(v).toLocaleString('en-AU'); };
+  var SAMPLE, S, res, plan, tab = 'ranked';
+  var CHIP = { builtin: 'ok', fix: 'bad', manual: 'grey', tooling: 'info', copilot: 'info', automate: 'info', draft: 'warn' };
+
+  function toast(t) { var el = $('#toast'); el.textContent = t; el.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(function () { el.classList.remove('on'); }, 2400); }
+  function fresh() { return { rows: clone(SAMPLE.processes), s: { staffCost: SAMPLE.settings.staffCost, copilotPerSeat: SAMPLE.settings.copilotPerSeat, capacity: 10, fixFirst: { reworkShare: 0.2, errorRate: 10, steps: 9 } } }; }
+  function setK(k, v) { var el = $('.kpi[data-k=' + k + '] b'); if (el.textContent !== String(v)) { el.textContent = v; var p = el.parentNode; p.classList.remove('flash'); void p.offsetWidth; p.classList.add('flash'); } }
+
+  function compute() {
+    var st = A.settings(S.s);
+    $('#setErr').textContent = st.errors.join('. ');
+    if (st.errors.length && res) return render();
+    res = A.assess(S.rows, S.s); plan = A.plan(res, S.s); render();
+  }
+  function render() {
+    var t = res.totals;
+    setK('now', t.hoursPerWeek); setK('saved', t.savedWeek); setK('net', money(t.net)); setK('build', t.build); setK('payback', t.payback == null ? '–' : t.payback); setK('seats', res.seats.length);
+    $('#cntRank').textContent = res.rows.length; $('#cntPlan').textContent = plan.weeks + 'w'; $('#cntPush').textContent = res.challenges.length; $('#cntCop').textContent = res.seats.length;
+    ['#sCost', 'staffCost', '#sCop', 'copilotPerSeat', '#sCap', 'capacity'].forEach(function (x, i, a) { if (i % 2) return; var el = $(x); if (document.activeElement !== el) el.value = S.s[a[i + 1]]; });
+    if (document.activeElement !== $('#sFix')) $('#sFix').value = Math.round(S.s.fixFirst.reworkShare * 100);
+    // processes editor
+    var focusedId = document.activeElement && document.activeElement.getAttribute && document.activeElement.getAttribute('data-pid');
+    if (!focusedId) $('#plist').innerHTML = S.rows.map(function (p, i) {
+      var sel = function (f, opts) { return '<select data-pid="' + i + '" data-f="' + f + '">' + opts.map(function (o) { return '<option value="' + o[0] + '"' + (String(p[f]) === String(o[0]) ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select>'; };
+      return '<div class="pr" data-row="' + esc(p.id) + '"><div class="top"><span class="id">' + esc(p.id) + '</span><b>' + esc(p.name) + '</b><button type="button" data-del="' + i + '" aria-label="Remove ' + esc(p.name) + '">×</button></div><div class="g">' +
+        '<label>Hours/wk<input type="number" step="0.5" min="0" value="' + p.hoursPerWeek + '" data-pid="' + i + '" data-f="hoursPerWeek"></label>' +
+        '<label>Rework h<input type="number" step="0.25" min="0" value="' + (p.reworkHours || 0) + '" data-pid="' + i + '" data-f="reworkHours"></label>' +
+        '<label>Errors %<input type="number" step="1" min="0" value="' + (p.errorRate || 0) + '" data-pid="' + i + '" data-f="errorRate"></label>' +
+        '<label>Judgement' + sel('judgement', [[0, '0 none'], [1, '1 some'], [2, '2 a lot'], [3, '3 expert']]) + '</label></div></div>';
+    }).join('');
+    // ranked
+    $('#rankSum').textContent = t.savedWeek + ' of ' + t.hoursPerWeek + ' hours a week back, worth ' + money(t.monthly) + ' a month at A$' + S.s.staffCost + ' an hour.';
+    $('#opps').innerHTML = res.rows.map(function (r) {
+      return '<div class="opp" data-opp="' + esc(r.id) + '"><div class="rk">' + r.rank + '</div><div><h4>' + esc(r.name) + '</h4><span class="chip ' + CHIP[r.approach] + '" data-approach="' + r.approach + '">' + esc(r.label) + '</span> <span class="chip ' + (r.level === 'high' ? 'bad' : r.level === 'medium' ? 'warn' : 'ok') + '">' + r.level + ' risk</span> <span class="chip grey">' + esc(r.owner) + '</span>' +
+        '<div class="reason">' + esc(r.why) + '</div><div class="ctl">Control: ' + esc(r.control) + '</div></div>' +
+        '<div class="nums"><div><b>' + r.saved + '</b><span>h/wk back</span></div><div><b>' + money(r.monthly) + '</b><span>a month</span></div><div><b>' + r.build + '</b><span>build h</span></div><div><b>' + (r.payback == null ? '–' : r.payback) + '</b><span>wks payback</span></div></div></div>';
+    }).join('') + (res.problems.length ? '<div class="blk">' + res.problems.map(esc).join('<br>') + '</div>' : '');
+    // plan
+    $('#planSum').textContent = plan.items.length + ' pieces of work, ' + t.build + ' build hours at ' + S.s.capacity + ' hours a week: done in week ' + plan.weeks + '.';
+    var head = '<div class="gh"><span></span>' + Array.from({ length: 12 }, function (_, i) { return '<span>W' + (i + 1) + '</span>'; }).join('') + '</div>';
+    $('#gantt').innerHTML = head + plan.items.map(function (i) {
+      var cells = '';
+      for (var w = 1; w <= 12; w++) cells += (w >= i.startWeek && w <= i.endWeek) ? '<div class="bar p' + i.phase + '" title="' + esc(i.approach) + '"></div>' : '<div class="cell"></div>';
+      return '<div class="gr" data-plan="' + esc(i.id) + '" data-start="' + i.startWeek + '" data-end="' + i.endWeek + '"><div class="n">' + esc(i.name) + '<small>' + esc(i.approach) + ' · ' + i.hours + ' h</small></div>' + cells + '</div>';
+    }).join('') + (plan.weeks > 12 ? '<div class="blk">At ' + S.s.capacity + ' hours a week this runs to week ' + plan.weeks + '. Add capacity or trim the plan.</div>' : '');
+    $('#notAuto').textContent = plan.notAutomated.length ? 'Not automated, on purpose: ' + plan.notAutomated.join(', ') + '.' : '';
+    // push back
+    $('#chal').innerHTML = res.challenges.length ? res.challenges.map(function (c) {
+      return '<div class="chal" data-chal="' + esc(c.id) + '"><h4>' + esc(c.name) + '</h4><dl><dt>My question</dt><dd>' + esc(c.question) + '</dd><dt>The evidence</dt><dd>' + esc(c.evidence) + '</dd><dt>A small trial</dt><dd>' + esc(c.trial) + '</dd><dt>We measure</dt><dd>' + esc(c.measure) + '</dd><dt>The way back</dt><dd>' + esc(c.rollback) + '</dd></dl></div>';
+    }).join('') : '<div class="empty">Nothing to push back on with these numbers.</div>';
+    // copilot
+    var copRows = res.rows.filter(function (r) { return r.seat; }), notCop = res.rows.filter(function (r) { return !r.seat && r.p.m365; });
+    $('#copBox').innerHTML = '<div><b>' + res.seats.length + '</b><span>seats: ' + esc(res.seats.join(', ') || 'none') + '</span></div><div><b>' + money(res.licences) + '</b><span>a month at A$' + S.s.copilotPerSeat + ' a seat</span></div><div><b>' + money(copRows.reduce(function (a, r) { return a + r.monthly; }, 0)) + '</b><span>a month of time back where Copilot is used</span></div>';
+    $('#copList').innerHTML = '<div class="card"><h3>Where Copilot is the right tool</h3>' + (copRows.map(function (r) { return '<div class="hint" style="margin:4px 0"><b>' + esc(r.name) + ':</b> ' + esc(r.why) + '</div>'; }).join('') || '<div class="hint">None with these inputs.</div>') + '</div>' +
+      '<div class="card" style="margin-top:8px"><h3>In Microsoft 365, but Copilot is not the answer</h3>' + notCop.map(function (r) { return '<div class="hint" style="margin:4px 0"><b>' + esc(r.name) + ':</b> ' + esc(r.label) + '. ' + esc(r.why) + '</div>'; }).join('') + '</div>';
+    $$('.side [data-tab]').forEach(function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-tab') === tab)); });
+    $$('[data-pane]').forEach(function (p) { p.hidden = p.getAttribute('data-pane') !== tab; });
+  }
+
+  function bind() {
+    $$('.side [data-tab]').forEach(function (b) { b.addEventListener('click', function () { tab = b.getAttribute('data-tab'); render(); }); });
+    var setting = function (sel, fn) { $(sel).addEventListener('input', function () { fn(Number($(sel).value)); compute(); }); };
+    setting('#sCost', function (v) { S.s.staffCost = v; });
+    setting('#sCop', function (v) { S.s.copilotPerSeat = v; });
+    setting('#sCap', function (v) { S.s.capacity = v; });
+    $('#sFix').addEventListener('input', function () {
+      var v = Number($('#sFix').value);
+      if (!(v >= 5 && v <= 80)) { $('#setErr').textContent = 'The fix-first threshold must be from 5% to 80%.'; return; }
+      S.s.fixFirst = { reworkShare: v / 100, errorRate: 10, steps: 9 }; compute();
+    });
+    $('#plist').addEventListener('input', function (e) {
+      var i = e.target.getAttribute('data-pid'), f = e.target.getAttribute('data-f'); if (i == null) return;
+      var v = Number(e.target.value);
+      if (e.target.value === '' || !isFinite(v) || v < 0) { $('#setErr').textContent = 'Use a number of 0 or more.'; return; }
+      $('#setErr').textContent = '';
+      S.rows[i][f] = v; compute();
+    });
+    $('#plist').addEventListener('change', function (e) { if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') { e.target.blur(); render(); } });
+    $('#plist').addEventListener('click', function (e) { var i = e.target.getAttribute('data-del'); if (i == null) return; var n = S.rows[i].name; S.rows.splice(+i, 1); compute(); toast('Removed "' + n + '" and re-ranked'); });
+    $('#addForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var row = { id: 'N' + (S.rows.length + 1), name: $('#aName').value.trim(), owner: $('#aOwner').value.trim() || 'Team', hoursPerWeek: Number($('#aHours').value), steps: Number($('#aSteps').value || 4), tools: [$('#aM365').checked ? 'Word' : 'Web app'], sensitivity: $('#aSens').value,
+        judgement: 1, structured: Number($('#aStruct').value), textHeavy: $('#aText').checked, clientFacing: $('#aClient').checked, m365: $('#aM365').checked, errorRate: 0, reworkHours: 0, frequency: 'weekly' };
+      var v = A.validate([row]);
+      if (!v.rows.length) { $('#addErr').textContent = 'Not added: ' + v.problems[0].replace(/^process N\d+: /, ''); return; }
+      $('#addErr').textContent = ''; S.rows.push(row); compute();
+      var r = res.rows.find(function (x) { return x.id === row.id; });
+      toast('Added "' + row.name + '": ' + r.label + ', ranked ' + r.rank + ' of ' + res.rows.length);
+      $('#addForm').reset(); $('#aText').checked = true; $('#aM365').checked = true;
+    });
+    $('#csvBtn').addEventListener('click', function () {
+      var url = URL.createObjectURL(new Blob([A.toCsv(res, plan)], { type: 'text/csv' })), a = document.createElement('a');
+      a.href = url; a.download = 'ai-process-plan.csv'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 1500);
+    });
+    $('#resetBtn').addEventListener('click', function () { S = fresh(); tab = 'ranked'; $('#addErr').textContent = ''; $('#setErr').textContent = ''; compute(); toast('Back to the starting business'); });
+  }
+  function start(data) { SAMPLE = data; S = fresh(); bind(); compute(); }
+  if (location.protocol === 'file:') start(FALLBACK);
+  else fetch('data/processes.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(start).catch(function () { start(FALLBACK); });
+})();
+</script>
+</body>
+</html>

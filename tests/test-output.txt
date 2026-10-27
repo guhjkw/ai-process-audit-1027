@@ -1,0 +1,61 @@
+
+1. Input checks: bad rows are skipped and reported
+  PASS a process with no name is skipped
+  PASS negative hours are refused
+  PASS a fractional step count is refused
+  PASS an unknown data sensitivity is refused
+  PASS rework larger than the work is refused
+  PASS a duplicate id is renamed and reported
+  PASS a non-object row is skipped
+  PASS the review still runs on the 10 good rows
+  PASS settings out of range are refused with a reason
+
+2. The approach for each process
+  PASS invoice reminders: switch on the Xero feature you already pay for
+  PASS enrolment admin: fix the process first (40% rework, 12% errors, 11 steps)
+  PASS strategy sessions: keep them human
+  PASS bookkeeping data entry and website enquiries: automation with an AI step
+  PASS internal call notes in Teams: Microsoft 365 Copilot
+  PASS podcast-to-blog and proposals: AI drafts, a person approves
+  PASS video edits: the AI tools inside the editor
+  PASS client-facing enquiries wait for approval before anything goes out
+
+3. Risk, savings, build effort and ranking
+  PASS financial, client-facing automation is high risk with approval as the control
+  PASS a built-in feature stays low risk
+  PASS call notes save 1.4 of 4 hours a week (35%)
+  PASS fixing enrolment saves the 2 hours of rework plus a quarter of the rest: 3.3
+  PASS bookkeeping saves 6 of 10 hours: A$1,611 a month at A$62 an hour
+  PASS build hours grow with steps and tools (enrolment: 8 + 1.5 x 7 + 2 x 3 = 24.5)
+  PASS payback in weeks = build hours / hours saved (bookkeeping 19 / 6 = 3.2)
+  PASS the Xero switch-on ranks first, proposals last
+  PASS totals: 47 hours a week now, 20.8 saved, A$5,584 a month
+  PASS three Copilot seats (Advisers, Marketing coordinator, Director): A$94.20 a month
+  PASS net of licences: A$5,490 a month; 103 build hours pay back in 5 weeks
+
+4. Changing the inputs changes the answer
+  PASS a higher staff cost raises the monthly value
+  PASS a pricier Copilot seat lowers the net
+  PASS doubling bookkeeping hours to 20 doubles its savings to 12
+  PASS once enrolment rework drops, it is no longer "fix first" and becomes an automation
+  PASS without the built-in feature, invoice reminders become an automation
+  PASS raising proposal judgement to 3 keeps proposals human
+  PASS a stricter fix-first rule (10% rework) flags bookkeeping too
+
+5. Disagreeing with a process, constructively
+  PASS three challenges: the built-in feature, the human sessions, the enrolment fix
+  PASS each states the question, evidence, a small trial, a measure and a way back
+
+6. The 12-week roadmap
+  PASS quick wins first: Xero reminders and Copilot notes in week 1
+  PASS high-risk work last, piloted with approval: bookkeeping and proposals
+  PASS strategy sessions are listed as not automated
+  PASS at 10 hours a week the plan fits in 11 weeks
+  PASS at 20 hours a week it fits in 6
+  PASS weeks never run backwards
+
+7. Export
+  PASS the CSV holds the ranked review and the schedule
+  PASS commas inside reasons are quoted
+
+45 checks: 45 passed, 0 failed

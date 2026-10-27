@@ -1,0 +1,196 @@
+{
+  "_note": "Invented sample business for a live demo: a Perth advisory and education firm for small and medium businesses. Every process, number and tool mix is invented.",
+  "business": "Swanbourne SME Advisory (invented), Perth WA",
+  "settings": {
+    "staffCost": 62,
+    "copilotPerSeat": 31.4,
+    "weeksPerMonth": 4.33
+  },
+  "processes": [
+    {
+      "id": "P1",
+      "name": "Podcast episode to transcript to blog post",
+      "owner": "Marketing coordinator",
+      "hoursPerWeek": 6,
+      "frequency": "weekly",
+      "steps": 6,
+      "tools": [
+        "Podcast host",
+        "Word",
+        "HubSpot CMS"
+      ],
+      "sensitivity": "public",
+      "judgement": 1,
+      "structured": 1,
+      "textHeavy": true,
+      "clientFacing": true,
+      "m365": true,
+      "errorRate": 3,
+      "reworkHours": 0.5
+    },
+    {
+      "id": "P2",
+      "name": "Training video edits and captions",
+      "owner": "Course producer",
+      "hoursPerWeek": 4,
+      "frequency": "weekly",
+      "steps": 7,
+      "tools": [
+        "Video editor",
+        "LMS"
+      ],
+      "sensitivity": "public",
+      "judgement": 2,
+      "structured": 1,
+      "textHeavy": false,
+      "clientFacing": true,
+      "m365": false,
+      "errorRate": 2,
+      "reworkHours": 0.5
+    },
+    {
+      "id": "P3",
+      "name": "Client bookkeeping data entry",
+      "owner": "Accountant",
+      "hoursPerWeek": 10,
+      "frequency": "daily",
+      "steps": 6,
+      "tools": [
+        "Xero",
+        "Excel",
+        "Outlook"
+      ],
+      "sensitivity": "financial",
+      "judgement": 1,
+      "structured": 3,
+      "textHeavy": false,
+      "clientFacing": false,
+      "m365": true,
+      "errorRate": 6,
+      "reworkHours": 1.5
+    },
+    {
+      "id": "P4",
+      "name": "Website enquiries into HubSpot and first reply",
+      "owner": "Office manager",
+      "hoursPerWeek": 5,
+      "frequency": "daily",
+      "steps": 5,
+      "tools": [
+        "HubSpot",
+        "Outlook"
+      ],
+      "sensitivity": "client",
+      "judgement": 1,
+      "structured": 2,
+      "textHeavy": true,
+      "clientFacing": true,
+      "m365": true,
+      "errorRate": 4,
+      "reworkHours": 0.5
+    },
+    {
+      "id": "P5",
+      "name": "Proposals and engagement letters",
+      "owner": "Director",
+      "hoursPerWeek": 3,
+      "frequency": "weekly",
+      "steps": 5,
+      "tools": [
+        "Word",
+        "Outlook"
+      ],
+      "sensitivity": "client",
+      "judgement": 2,
+      "structured": 1,
+      "textHeavy": true,
+      "clientFacing": true,
+      "m365": true,
+      "errorRate": 2,
+      "reworkHours": 0.5
+    },
+    {
+      "id": "P6",
+      "name": "Client call notes and action items",
+      "owner": "Advisers",
+      "hoursPerWeek": 4,
+      "frequency": "daily",
+      "steps": 3,
+      "tools": [
+        "Teams",
+        "Word"
+      ],
+      "sensitivity": "client",
+      "judgement": 1,
+      "structured": 1,
+      "textHeavy": true,
+      "clientFacing": false,
+      "m365": true,
+      "errorRate": 5,
+      "reworkHours": 0.5
+    },
+    {
+      "id": "P7",
+      "name": "Course enrolment admin",
+      "owner": "Office manager",
+      "hoursPerWeek": 5,
+      "frequency": "daily",
+      "steps": 11,
+      "tools": [
+        "Forms",
+        "Excel",
+        "LMS",
+        "Outlook",
+        "Xero"
+      ],
+      "sensitivity": "client",
+      "judgement": 0,
+      "structured": 2,
+      "textHeavy": false,
+      "clientFacing": true,
+      "m365": true,
+      "errorRate": 12,
+      "reworkHours": 2
+    },
+    {
+      "id": "P8",
+      "name": "Strategy advice sessions",
+      "owner": "Director",
+      "hoursPerWeek": 8,
+      "frequency": "weekly",
+      "steps": 4,
+      "tools": [
+        "Teams"
+      ],
+      "sensitivity": "client",
+      "judgement": 3,
+      "structured": 0,
+      "textHeavy": false,
+      "clientFacing": true,
+      "m365": true,
+      "errorRate": 1,
+      "reworkHours": 0
+    },
+    {
+      "id": "P9",
+      "name": "Overdue invoice reminders",
+      "owner": "Accountant",
+      "hoursPerWeek": 2,
+      "frequency": "weekly",
+      "steps": 4,
+      "tools": [
+        "Xero",
+        "Outlook"
+      ],
+      "sensitivity": "financial",
+      "judgement": 0,
+      "structured": 3,
+      "textHeavy": false,
+      "clientFacing": true,
+      "m365": true,
+      "errorRate": 3,
+      "reworkHours": 0.25,
+      "builtIn": "Xero invoice reminders"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+
+1. The review loads on the invented Perth business
+  PASS 47 hours a week on these processes, 20.8 back
+  PASS A$5,490 a month net of 3 Copilot seats; 103 build hours; payback 5 weeks
+  PASS 9 processes ranked, the Xero switch-on first
+  PASS enrolment admin says fix it first; strategy sessions stay human
+
+2. Changing the numbers changes the answer
+  PASS cutting enrolment rework to 0.5 h turns "fix first" into an automation
+  PASS and there is one less challenge to raise
+  PASS a A$60 Copilot seat lowers the net to A$5,404
+  PASS a A$2 staff cost is refused with a reason and the review is kept
+  PASS a A$90 staff cost raises the monthly value
+  PASS setting proposal judgement to 3 keeps proposals human
+
+3. Adding and removing processes
+  PASS a process with no name is refused with a reason
+  PASS a client-facing newsletter in Microsoft 365 becomes "AI drafts, a person approves"
+  PASS it shares the Marketing coordinator seat, so seats stay at 3
+  PASS removing two processes re-ranks the rest (8 left)
+
+4. Plan, push-back and Copilot views
+  PASS the plan view shows only the plan
+  PASS the Xero switch-on starts in week 1
+  PASS doubling build capacity shortens the plan
+  PASS push-back cards give the question, evidence, trial, measure and way back
+  PASS the Copilot view names the seats and where Copilot is not the answer
+
+5. Export and reset
+  PASS the plan downloads as a CSV with the ranking and the schedule
+  PASS reset brings back the starting business
+
+6. Phone layout
+  PASS no sideways scrolling at 390px wide
+  PASS zero console or page errors
+
+23 browser checks: 23 passed, 0 failed
